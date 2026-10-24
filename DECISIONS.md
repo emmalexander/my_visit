@@ -55,8 +55,9 @@ Because client transport errors cannot verify whether the server committed the m
 ---
 
 ### 6. What did you deliberately leave out, and what would you implement with another four hours?
+- **Implemented as Requested**:
+  - Full relational database (SQLite/Drift): SQLite through Drift is used for persistent storage (`DriftTaskLocalStore`, `AppDatabase`), providing type-safe SQL tables for pending mutations, metadata/sequence tracking, and cached visits.
 - **Deliberately Left Out**:
-  - Full relational database (SQLite/Drift): `SharedPreferences` with atomic JSON serialization was chosen to avoid C-binding build complications while providing full durability for pending mutations.
   - Automatic connectivity listener (`connectivity_plus`): Manual retry and pull-to-refresh were prioritized over flaky OS connectivity listeners.
   - Exponential backoff with jitter on network retries.
 - **With Another Four Hours**:

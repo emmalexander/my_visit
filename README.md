@@ -49,7 +49,7 @@ Field agents operate in areas with intermittent connectivity. This application p
 - **Flutter**: `3.38.5` (channel stable)
 - **Dart**: `3.10.4`
 - **State Management**: `flutter_riverpod: ^3.3.2` (*Strictly without code generation*)
-- **Local Persistence**: `shared_preferences: ^2.5.5`
+- **Local Persistence**: SQLite through Drift (`drift: ^2.31.0`, `sqlite3_flutter_libs: ^0.6.0+eol`)
 - **Formatting**: `intl: ^0.20.3`
 - **Target Platform**: Android (minSdkVersion 21+, compileSdkVersion 34+)
 
@@ -65,8 +65,12 @@ lib/
 │   └── flaky_task_api.dart             # Supplied external mock backend (unchanged)
 ├── data/
 │   ├── local/
+│   │   ├── drift/
+│   │   │   ├── app_database.dart       # Drift SQLite database schema and connection
+│   │   │   ├── app_database.g.dart     # Generated Drift table definitions and companions
+│   │   │   └── drift_task_local_store.dart # Production SQLite store via Drift
 │   │   ├── task_local_store.dart       # Local persistence contract
-│   │   ├── shared_prefs_task_local_store.dart  # Production SharedPreferences store
+│   │   ├── shared_prefs_task_local_store.dart  # Alternative SharedPreferences store
 │   │   └── in_memory_task_local_store.dart    # Test fake for deterministic unit tests
 │   ├── models/
 │   │   ├── task_status.dart            # TaskStatus enum (open, done, archived, unknown)
